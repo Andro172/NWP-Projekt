@@ -1,0 +1,22 @@
+﻿  AssetManager.cpp
+  Game.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\AssetManager.h(5,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  GameOverState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Game.h(4,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  GameState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  InputManager.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.h(2,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  MainMenuState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Game.h(4,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  PauseState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\MainMenuState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Player.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  SplashState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.h(2,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  StateMachine.cpp
+  Generating Code...
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\SplashState.h(2,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory

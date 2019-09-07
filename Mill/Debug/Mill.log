@@ -1,0 +1,64 @@
+﻿  AssetManager.cpp
+  Game.cpp
+  GameOverState.cpp
+  GameState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(42,39): warning C4305:  'argument': truncation from 'double' to 'float'
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(237,16): warning C4101:  'error': unreferenced local variable
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(261,16): warning C4101:  'error': unreferenced local variable
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(370,17): warning C4101:  'error': unreferenced local variable
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(389,17): warning C4101:  'error': unreferenced local variable
+  InputManager.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\GameState.cpp(418,14): warning C4101:  'error': unreferenced local variable
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         with
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:             T=float
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         and
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:             T=int
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(9,29): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         with
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:             T=float
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         and
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:             T=int
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(8,29): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:  'argument': conversion from 'const T' to 'T', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         with
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:             T=float
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         and
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:             T=int
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(7,25): warning C4244:         ]
+  main.cpp
+  MainMenuState.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:  'argument': conversion from 'const T' to 'T', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         with
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:             T=float
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         ]
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         and
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         [
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:             T=int
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\InputManager.cpp(6,45): warning C4244:         ]
+  PauseState.cpp
+  Player.cpp
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\MainMenuState.cpp(29,42): warning C4244:  'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(34,24): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(33,41): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(51,24): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(50,42): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(79,24): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(78,57): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(96,24): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  SplashState.cpp
+  StateMachine.cpp
+  Generating Code...
+C:\Users\andro\source\repos\NWP-Projekt\Mill\Mill\Player.cpp(95,58): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  Mill.vcxproj -> C:\Users\andro\source\repos\NWP-Projekt\Mill\Debug\Mill.exe
