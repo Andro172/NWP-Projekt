@@ -1,4 +1,3 @@
-# NWP-Projekt
 # Nine Man's Morris Game
 
 Made using c++ with SFML framework
