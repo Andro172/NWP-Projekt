@@ -14,12 +14,3 @@ The game proceeds in three phases:
 
 HAVE FUN!!!
 
-
-RELEASE INSTRUCTIONS:
-
-To configure release mode go to Configuration Properties->Linker->Input->Aditional Dependencies
-and set 
-sfml-graphics-d.lib to sfml-graphics.lib
-sfml-window-d.lib to sfml-window.lib
-sfml-system-d.lib to sfml-window.lib
-
