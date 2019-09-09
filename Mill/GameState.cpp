@@ -78,6 +78,7 @@ namespace NWP {
 								}
 							}
 						}
+						i = j = 8;
 					}
 				}
 			}
@@ -135,69 +136,27 @@ namespace NWP {
 
 	void GameState::InitGridArray() {
 
-		// first row
 		for (int i = 0; i < 7; ++i) {
-			if (i == 0 || i == 3 || i == 6) {
-				gridArray[0][i] = EMPTY_PIECE;
-				continue;
+			for (int j = 0; j < 7; ++j) {
+				if (j == 0 || j == 3 || j == 6) {
+					gridArray[i][j] = EMPTY_PIECE;
+					continue;
+				}
+				else if (i == 1 || i == 3 || i == 5) {
+					gridArray[i][j] = EMPTY_PIECE;
+					continue;
+				}
+				else if (i == 2 || i == 3 || i == 4) {
+					gridArray[i][j] = EMPTY_PIECE;
+					continue;
+				}
+				else if (i != 3){
+					gridArray[i][j] = EMPTY_PIECE;
+					continue;
+				}
+
+				gridArray[i][j] = INVALID_SPACE;
 			}
-			gridArray[0][i] = INVALID_SPACE;
-		}
-
-		// second row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 1 || i == 3 || i == 5) {
-				gridArray[1][i] = EMPTY_PIECE;
-				continue;
-			}
-			gridArray[1][i] = INVALID_SPACE;
-		}
-
-		// third row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 2 || i == 3 || i == 4) {
-				gridArray[2][i] = EMPTY_PIECE;
-				continue;
-			}
-			gridArray[2][i] = INVALID_SPACE;
-		}
-
-		// fourth row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 3) {
-				gridArray[3][i] = INVALID_SPACE;
-				continue;
-			}
-			gridArray[3][i] = EMPTY_PIECE;
-		}
-
-
-		// fifth row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 2 || i == 3 || i == 4) {
-				gridArray[4][i] = EMPTY_PIECE;
-				continue;
-			}
-			gridArray[4][i] = INVALID_SPACE;
-		}
-
-
-		// sixth row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 1 || i == 3 || i == 5) {
-				gridArray[5][i] = EMPTY_PIECE;
-				continue;
-			}
-			gridArray[5][i] = INVALID_SPACE;
-		}
-
-		// seventh row
-		for (int i = 0; i < 7; ++i) {
-			if (i == 0 || i == 3 || i == 6) {
-				gridArray[6][i] = EMPTY_PIECE;
-				continue;
-			}
-			gridArray[6][i] = INVALID_SPACE;
 		}
 	}
 

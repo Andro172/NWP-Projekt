@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "SplashState.h"
-#include <iostream>
 
 namespace NWP {
 	Game::Game(int width, int height, sf::String title) {
@@ -9,7 +8,6 @@ namespace NWP {
 			_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		}
 		catch (std::exception& e) {
-			std::cout << e.what() << std::endl;
 		}
 		
 
