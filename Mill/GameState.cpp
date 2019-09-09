@@ -65,22 +65,17 @@ namespace NWP {
 				for (int j = 0; j < 7; ++j) {
 					if (this->_data->input.IsSpriteClicked(this->_gridPieces[i][j], sf::Mouse::Left, this->_data->window)) {
 						if (gridArray[i][j] != INVALID_SPACE) {
-							std::cout << "valid piece clicked" << std::endl;
 							if (gameState == STATE_PLAYING) {
-								std::cout << "play ----------- place piece" << std::endl;
 								this->CheckAndPlacePiece(i, j);
 							}
 							else if (gameState == STATE_MILL) {
-								std::cout << "mill ----------- take piece" << std::endl;
 								this->CheckAndTakePiece(i, j);
 							}
 							else if (gameState == STATE_MOVING) {
 								if (gridArray[i][j] == turn) {
-									std::cout << "selecting ----------- select piece" << std::endl;
 									this->CheckAndSelectPiece(i, j);
 								}
 								else {
-									std::cout << "moving ----------- move piece" << std::endl;
 									this->CheckAndMovePiece(i, j);
 								}
 							}
@@ -235,7 +230,6 @@ namespace NWP {
 					}
 				}
 				catch (int error) {
-					std::cout << "Mill throw" << std::endl;
 				}
 			}
 			else if (RED_PIECE == turn) {
@@ -259,7 +253,6 @@ namespace NWP {
 					}
 				}
 				catch (int error) {
-					std::cout << "Mill throw" << std::endl;
 				}
 			}
 
@@ -277,8 +270,6 @@ namespace NWP {
 					if (!taken) {
 						previousGameState = gameState;
 						gameState = STATE_GREEN_WON;
-
-						// show green won screen
 						return;
 					}
 					gridArray[row][column] = EMPTY_PIECE;
@@ -295,7 +286,7 @@ namespace NWP {
 					gameState = previousGameState;
 				}
 				else {
-					std::cout << "RED PLAYER WON" << std::endl;
+					gameState = STATE_RED_WON;
 				}
 			}
 			else if (turn == RED_PIECE && gridArray[row][column] == GREEN_PIECE) {
@@ -304,8 +295,6 @@ namespace NWP {
 					if (!taken) {
 						previousGameState = gameState;
 						gameState = STATE_RED_WON;
-
-						// show red won screen
 						return;
 					}
 					gridArray[row][column] = EMPTY_PIECE;
@@ -322,7 +311,7 @@ namespace NWP {
 					gameState = previousGameState;
 				}
 				else {
-					std::cout << "GREEN PLAYER WON" << std::endl;
+					gameState = STATE_GREEN_WON;
 				}
 			}
 		}
@@ -368,7 +357,6 @@ namespace NWP {
 						turn = RED_PIECE;
 					}
 					catch (int error) {
-						std::cout << "Mill throw ---" << std::endl;
 					}
 				}
 			}
@@ -387,7 +375,6 @@ namespace NWP {
 						turn = GREEN_PIECE;
 					}
 					catch (int error) {
-						std::cout << "Mill throw ---" << std::endl;
 					}
 				}
 			}
@@ -442,7 +429,6 @@ namespace NWP {
 					_tempPieceStr = "Red Piece";
 					redPlayer->SetMill(x1, y1, x2, y2, x3, y3);
 				}
-				std::cout << selectingPieceStr << std::endl;
 
 				_gridPieces[x1][y1].setTexture(this->_data->assets.GetTexture(selectingPieceStr));
 				_tempMill[0] = &_gridPieces[x1][y1];

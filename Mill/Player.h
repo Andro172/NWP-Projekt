@@ -44,7 +44,7 @@ namespace NWP {
 		sf::Texture selectedPieceTexture;
 		sf::Sprite* previousSelectedPiece;
 
-		MillPieces currentMills[24];
+		MillPieces currentMills[16];
 		int currentMillsNum = 0;
 
 		GameDataRef _data;

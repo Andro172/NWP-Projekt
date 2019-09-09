@@ -203,7 +203,7 @@ namespace NWP {
 		pieces.y3 = y3;
 
 		
-		for (int i = 0; i < 24; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			if (CheckIfMill(x1, y1, x2, y2, x3, y3, currentMills[i])) {
 				break;
 			}
@@ -211,8 +211,6 @@ namespace NWP {
 			if (currentMills[i].x1 == -1) {
 				currentMills[i] = pieces;
 				++currentMillsNum;
-
-				std::cout << "setting mill ---" << std::endl;
 				break;
 			}
 		}
@@ -222,7 +220,7 @@ namespace NWP {
 	void Player::UnsetMill(int x1, int y1, int x2, int y2, int x3, int y3){
 		MillPieces pieces;
 
-		for (int i = 0; i < 24; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			if (currentMills[i].x1 == x1 &&
 				currentMills[i].x2 == x2 &&
 				currentMills[i].x3 == x3 &&
@@ -240,7 +238,7 @@ namespace NWP {
 
 	bool Player::CheckIfHasMill(int x1, int y1, int x2, int y2, int x3, int y3)
 	{
-		for (int i = 0; i < 24; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			if (CheckIfMill(x1, y1, x2, y2, x3, y3, currentMills[i])) {
 				return true;
 			}
@@ -250,7 +248,7 @@ namespace NWP {
 
 	bool Player::CheckIfPieceOnMill(int row, int column)
 	{
-		for (int i = 0; i < 24; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			if (CheckIfOnMill(row, column, currentMills[i])) {
 				return true;
 			}
@@ -260,7 +258,7 @@ namespace NWP {
 
 	void Player::UnsetMillIfMoved(int rowSelected, int columnSelected){
 		
-		for (int i = 0; i < 24; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			if (CheckIfOnMill(rowSelected, columnSelected, currentMills[i])) {
 				MillPieces pieces;
 				currentMills[i] = pieces;
