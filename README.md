@@ -1,6 +1,6 @@
 # Nine Man's Morris Game
 
-Made using c++ with SFML framework
+Made using c++ with SFML framework for x86 machines
 
 RULES:
 
@@ -13,3 +13,13 @@ The game proceeds in three phases:
 3. -> (optional phase) Moving men to any vacant point when the player has been reduced to three men
 
 HAVE FUN!!!
+
+
+RELEASE INSTRUCTIONS:
+
+To configure release mode go to Configuration Properties->Linker->Input->Aditional Dependencies
+and set 
+sfml-graphics-d.lib to sfml-graphics.lib
+sfml-window-d.lib to sfml-window.lib
+sfml-system-d.lib to sfml-window.lib
+
