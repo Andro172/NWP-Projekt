@@ -1,7 +1,5 @@
-#include <iostream>
+#include "stdafx.h"
 #include "Game.h"
-
-#include "DEFINITIONS.h"
 
 int main()
 {

@@ -1,9 +1,5 @@
 #pragma once
 
-#include <map>
-
-#include <SFML/Graphics.hpp>
-
 namespace NWP {
 	class AssetManager {
 	public:

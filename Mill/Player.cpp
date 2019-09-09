@@ -1,8 +1,5 @@
+#include "stdafx.h"
 #include "Player.h"
-#include <iostream>
-#include "DEFINITIONS.h"
-
-using namespace std;
 
 namespace NWP {
 	Player::Player(int playerPiece, GameDataRef data) {

@@ -1,7 +1,5 @@
+#include "stdafx.h"
 #include "MainMenuState.h"
-#include <sstream>
-#include <iostream>
-#include "DEFINITIONS.h"
 #include "GameState.h"
 
 

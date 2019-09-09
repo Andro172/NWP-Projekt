@@ -1,9 +1,7 @@
+#include "stdafx.h"
 #include "GameState.h"
 #include "GameOverState.h"
 #include "MainMenuState.h"
-#include <sstream>
-#include <iostream>
-#include "DEFINITIONS.h"
 
 namespace NWP {
 	GameOverState::GameOverState(int winner,GameDataRef data) : _data(data) {

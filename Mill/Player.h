@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "stdafx.h"
 #include "Game.h"
 
 struct MillPieces {

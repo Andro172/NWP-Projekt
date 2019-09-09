@@ -1,7 +1,5 @@
+#include "stdafx.h"
 #include "SplashState.h"
-#include <sstream>
-#include <iostream>
-#include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
 namespace NWP {

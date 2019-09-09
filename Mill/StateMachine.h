@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include "stdafx.h"
 #include <stack>
 #include "State.h"
 

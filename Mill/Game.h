@@ -1,7 +1,5 @@
 #pragma once
-#include <memory>
-#include <string>
-#include <SFML/Graphics.hpp>
+#include "stdafx.h"
 #include "StateMachine.h"
 #include "AssetManager.h"
 #include "InputManager.h"
