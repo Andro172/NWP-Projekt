@@ -10,8 +10,8 @@ namespace NWP {
 
 	void Player::InitSprites(int turn) {
 		if (turn == GREEN_PIECE) {
-			int xOffset = 0;
-			int yOffset = 0;
+			float xOffset = 0;
+			float yOffset = 0;
 
 			this->pieceTexture = this->_data->assets.GetTexture("Green Piece");
 			this->playerTexture = this->_data->assets.GetTexture("Green Player");
@@ -55,8 +55,8 @@ namespace NWP {
 			this->sprite.setPosition(SCREEN_WIDTH / 6 - this->sprite.getGlobalBounds().width, SCREEN_HEIGHT / 4);
 		}
 		else {
-			int xOffset = 0;
-			int yOffset = 0;
+			float xOffset = 0;
+			float yOffset = 0;
 
 			this->pieceTexture = this->_data->assets.GetTexture("Red Piece");
 			this->playerTexture = this->_data->assets.GetTexture("Red Player");
@@ -190,6 +190,7 @@ namespace NWP {
 	}
 
 	void Player::SetMill(int x1, int y1, int x2, int y2, int x3, int y3){
+
 		MillPieces pieces;
 		pieces.x1 = x1;
 		pieces.x2 = x2;
@@ -199,44 +200,30 @@ namespace NWP {
 		pieces.y2 = y2;
 		pieces.y3 = y3;
 
-		
-		for (int i = 0; i < 16; ++i) {
-			if (CheckIfMill(x1, y1, x2, y2, x3, y3, currentMills[i])) {
-				break;
-			}
-
-			if (currentMills[i].x1 == -1) {
-				currentMills[i] = pieces;
-				++currentMillsNum;
-				break;
-			}
-		}
-		
+		currentMills.push_front(pieces);
 	}
 
+
 	void Player::UnsetMill(int x1, int y1, int x2, int y2, int x3, int y3){
-		MillPieces pieces;
 
-		for (int i = 0; i < 16; ++i) {
-			if (currentMills[i].x1 == x1 &&
-				currentMills[i].x2 == x2 &&
-				currentMills[i].x3 == x3 &&
-				currentMills[i].y1 == y1 &&
-				currentMills[i].y2 == y2 &&
-				currentMills[i].y3 == y3) {
-
-				currentMills[i] = pieces;
-				--currentMillsNum;
-				break;
+		auto it = currentMills.begin();
+		while (it != currentMills.end())
+		{
+			if (it->x1 == x1 && it->y1 == y1 &&
+				it->x2 == x2 && it->y2 == y2 &&
+				it->x3 == x3 && it->y3 == y3){
+				currentMills.erase(it++);
+			}
+			else{
+				++it;
 			}
 		}
-		
 	}
 
 	bool Player::CheckIfHasMill(int x1, int y1, int x2, int y2, int x3, int y3)
 	{
-		for (int i = 0; i < 16; ++i) {
-			if (CheckIfMill(x1, y1, x2, y2, x3, y3, currentMills[i])) {
+		for (auto const& pieces : currentMills) {
+			if (CheckIfMill(x1, y1, x2, y2, x3, y3, pieces)) {
 				return true;
 			}
 		}
@@ -245,21 +232,25 @@ namespace NWP {
 
 	bool Player::CheckIfPieceOnMill(int row, int column)
 	{
-		for (int i = 0; i < 16; ++i) {
-			if (CheckIfOnMill(row, column, currentMills[i])) {
+		for (auto const& pieces : currentMills) {
+			if (CheckIfOnMill(row, column, pieces)) {
 				return true;
 			}
 		}
-		return false;
+		return false; 
 	}
 
 	void Player::UnsetMillIfMoved(int rowSelected, int columnSelected){
-		
-		for (int i = 0; i < 16; ++i) {
-			if (CheckIfOnMill(rowSelected, columnSelected, currentMills[i])) {
-				MillPieces pieces;
-				currentMills[i] = pieces;
-				--currentMillsNum;
+
+		auto it = currentMills.begin();
+		while (it != currentMills.end())
+		{
+			if (CheckIfOnMill(rowSelected, columnSelected, *it)) {
+				currentMills.erase(it);
+				break;
+			}
+			else {
+				++it;
 			}
 		}
 	}
