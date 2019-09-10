@@ -78,7 +78,7 @@ namespace NWP {
 								}
 							}
 						}
-						i = j = 8;
+						return;
 					}
 				}
 			}
@@ -138,19 +138,19 @@ namespace NWP {
 
 		for (int i = 0; i < 7; ++i) {
 			for (int j = 0; j < 7; ++j) {
-				if (j == 0 || j == 3 || j == 6) {
+				if ((i == 0 || i == 6) && (j == 0 || j == 3 || j == 6)) {
 					gridArray[i][j] = EMPTY_PIECE;
 					continue;
 				}
-				else if (i == 1 || i == 3 || i == 5) {
+				else if ((i == 1 || i == 5) && (j == 1 || j == 3 || j == 5)) {
 					gridArray[i][j] = EMPTY_PIECE;
 					continue;
 				}
-				else if (i == 2 || i == 3 || i == 4) {
+				else if ((i == 2 || i == 4) && (j == 2 || j == 3 || j == 4)) {
 					gridArray[i][j] = EMPTY_PIECE;
 					continue;
 				}
-				else if (i != 3){
+				else if (i == 3 && j != 3){
 					gridArray[i][j] = EMPTY_PIECE;
 					continue;
 				}
