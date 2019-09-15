@@ -188,17 +188,16 @@ namespace NWP {
 
 	void Player::UnsetMill(int x1, int y1, int x2, int y2, int x3, int y3){
 
-		auto it = currentMills.begin();
-		while (it != currentMills.end())
-		{
-			if (it->x1 == x1 && it->y1 == y1 &&
-				it->x2 == x2 && it->y2 == y2 &&
-				it->x3 == x3 && it->y3 == y3){
-				currentMills.erase(it++);
-			}
-			else{
-				++it;
-			}
+		auto it = std::find_if(currentMills.begin(), currentMills.end(), [x1, y1, x2, y2, x3, y3](MillPieces pieces) {
+				bool one = pieces.x1 == x1 && pieces.y1 == y1;
+				bool two = pieces.x2 == x2 && pieces.y2 == y2;
+				bool three = pieces.x3 == x3 && pieces.y3 == y3;
+
+				return one && two && three;
+			});
+
+		if (it != currentMills.end()) {
+			currentMills.erase(it);
 		}
 	}
 
@@ -236,21 +235,16 @@ namespace NWP {
 
 	void Player::UnsetMillIfMoved(int rowSelected, int columnSelected){
 
-		auto it = currentMills.begin();
-		while (it != currentMills.end())
-		{
-			bool one = (*it).x1 == rowSelected && (*it).y1 == columnSelected;
-			bool two = (*it).x2 == rowSelected && (*it).y2 == columnSelected;
-			bool three = (*it).x3 == rowSelected && (*it).y3 == columnSelected;
-			bool onMill = one || two || three;
+		auto it = std::find_if(currentMills.begin(), currentMills.end(), [rowSelected, columnSelected](MillPieces pieces) {
+			bool one = pieces.x1 == rowSelected && pieces.y1 == columnSelected;
+			bool two = pieces.x2 == rowSelected && pieces.y2 == columnSelected;
+			bool three = pieces.x3 == rowSelected && pieces.y3 == columnSelected;
 
-			if (onMill) {
-				currentMills.erase(it);
-				break;
-			}
-			else {
-				++it;
-			}
+			return one || two || three;
+			});
+
+		if (it != currentMills.end()) {
+			currentMills.erase(it);
 		}
 	}
 
