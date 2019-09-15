@@ -171,24 +171,6 @@ namespace NWP {
 		}
 	}
 
-	bool Player::CheckIfMill(int x1, int y1, int x2, int y2, int x3, int y3, MillPieces pieces)
-	{
-		bool one = pieces.x1 == x1 && pieces.y1 == y1;
-		bool two = pieces.x2 == x2 && pieces.y2 == y2;
-		bool three = pieces.x3 == x3 && pieces.y3 == y3;
-
-		return one && two && three;
-	}
-
-	bool Player::CheckIfOnMill(int row, int column, MillPieces pieces)
-	{
-		bool one = pieces.x1 == row && pieces.y1 == column;
-		bool two = pieces.x2 == row  && pieces.y2 == column;
-		bool three = pieces.x3 == row && pieces.y3 == column;
-
-		return one || two || three;
-	}
-
 	void Player::SetMill(int x1, int y1, int x2, int y2, int x3, int y3){
 
 		MillPieces pieces;
@@ -222,22 +204,34 @@ namespace NWP {
 
 	bool Player::CheckIfHasMill(int x1, int y1, int x2, int y2, int x3, int y3)
 	{
-		for (auto const& pieces : currentMills) {
-			if (CheckIfMill(x1, y1, x2, y2, x3, y3, pieces)) {
-				return true;
-			}
+		auto it = std::find_if(currentMills.begin(), currentMills.end(), [x1, y1, x2, y2, x3, y3](MillPieces pieces) {
+				bool one = pieces.x1 == x1 && pieces.y1 == y1;
+				bool two = pieces.x2 == x2 && pieces.y2 == y2;
+				bool three = pieces.x3 == x3 && pieces.y3 == y3;
+
+				return one && two && three;
+			});
+
+		if (it != currentMills.end()) {
+			return true;
 		}
 		return false;
 	}
 
 	bool Player::CheckIfPieceOnMill(int row, int column)
 	{
-		for (auto const& pieces : currentMills) {
-			if (CheckIfOnMill(row, column, pieces)) {
-				return true;
-			}
+		auto it = std::find_if(currentMills.begin(), currentMills.end(), [row, column](MillPieces pieces) {
+				bool one = pieces.x1 == row && pieces.y1 == column;
+				bool two = pieces.x2 == row && pieces.y2 == column;
+				bool three = pieces.x3 == row && pieces.y3 == column;
+
+				return one || two || three;
+			});
+
+		if (it != currentMills.end()) {
+			return true;
 		}
-		return false; 
+		return false;
 	}
 
 	void Player::UnsetMillIfMoved(int rowSelected, int columnSelected){
@@ -245,7 +239,12 @@ namespace NWP {
 		auto it = currentMills.begin();
 		while (it != currentMills.end())
 		{
-			if (CheckIfOnMill(rowSelected, columnSelected, *it)) {
+			bool one = (*it).x1 == rowSelected && (*it).y1 == columnSelected;
+			bool two = (*it).x2 == rowSelected && (*it).y2 == columnSelected;
+			bool three = (*it).x3 == rowSelected && (*it).y3 == columnSelected;
+			bool onMill = one || two || three;
+
+			if (onMill) {
 				currentMills.erase(it);
 				break;
 			}

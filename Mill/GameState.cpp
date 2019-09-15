@@ -7,13 +7,16 @@ namespace NWP {
 	GameState::GameState(GameDataRef data) : _data(data) {
 
 	}
+	GameState::~GameState() {
+		delete this->greenPlayer;
+		delete this->redPlayer;
+	}
 
 	void GameState::Init() {
 
 		gameState = STATE_PLAYING;
 		previousGameState = STATE_PLAYING;
 		turn = GREEN_PIECE;
-
 
 		this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
@@ -42,8 +45,11 @@ namespace NWP {
 		InitGridArray();
 		InitGridPieces();
 
-		this->greenPlayer = new Player(GREEN_PIECE,_data);
+		this->greenPlayer = new Player(GREEN_PIECE, _data);
 		this->redPlayer = new Player(RED_PIECE, _data);
+
+		this->greenPlayer->ChangeTurnState(true);
+		this->redPlayer->ChangeTurnState(false);
 
 	}
 	void GameState::HandleInput() {
@@ -78,7 +84,6 @@ namespace NWP {
 								}
 							}
 						}
-						return;
 					}
 				}
 			}
@@ -119,23 +124,22 @@ namespace NWP {
 
 
 	void GameState::InitGridPieces() {
-		int fix = 0;
+		_gridPieces.resize(7, std::vector<sf::Sprite>(7));
 		for (int i = 0; i < 7; ++i) {
 			for (int j = 0; j < 7; ++j) {
 				_gridPieces[i][j].setTexture(this->_data->assets.GetTexture("Red Piece"));
 
-				_gridPieces[i][j].setPosition(_gridSprite.getPosition().x + fix + (_gridSprite.getLocalBounds().width / 7) * i,
-					_gridSprite.getPosition().y + fix + (_gridSprite.getLocalBounds().height / 7) * j);
+				_gridPieces[i][j].setPosition(_gridSprite.getPosition().x + (_gridSprite.getLocalBounds().width / 7) * i,
+					_gridSprite.getPosition().y + (_gridSprite.getLocalBounds().height / 7) * j);
 
 				_gridPieces[i][j].setColor(sf::Color(255, 255, 255, 0));
 
 			}
-			fix = 0;
 		}
 	}
 
 	void GameState::InitGridArray() {
-
+		gridArray.resize(7, std::vector<int>(7,INVALID_SPACE));
 		for (int i = 0; i < 7; ++i) {
 			for (int j = 0; j < 7; ++j) {
 				if ((i == 0 || i == 6) && (j == 0 || j == 3 || j == 6)) {
@@ -154,8 +158,6 @@ namespace NWP {
 					gridArray[i][j] = EMPTY_PIECE;
 					continue;
 				}
-
-				gridArray[i][j] = INVALID_SPACE;
 			}
 		}
 	}

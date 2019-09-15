@@ -14,32 +14,30 @@ namespace NWP{
 	}
 
 	void StateMachine::ProcessStateChanges() {
-		if (this->_isRemoving && !this->_states.empty()) {
-			this->_states.pop();
-
-			if (!this->_states.empty()) {
-				this->_states.top()->Resume();
+		if (this->_isRemoving && this->_state) {
+			if (this->_previousState) {
+				this->_state = std::move(this->_previousState);
+				this->_state->Resume();
+				this->_previousState = nullptr;
 			}
-
+			else {
+				this->_state = nullptr;
+			}
 			this->_isRemoving = false;
 		}
 
 		if (this->_isAdding) {
-			if (!this->_states.empty()) {
-				if (this->_isReplacing) {
-					this->_states.pop();
-				}
-				else {
-					this->_states.top()->Pause();
-				}
+			if (this->_state && !this->_isReplacing) {
+				this->_state->Pause();
+				this->_previousState = std::move(this->_state);
 			}
-			this->_states.push(std::move(this->_newState));
-			this->_states.top()->Init();
+			this->_state = (std::move(this->_newState));
+			this->_state->Init();
 			this->_isAdding = false;
 		}
 	}
 
 	StateRef& StateMachine::GetActiveState() {
-		return this->_states.top();
+		return this->_state;
 	}
 }

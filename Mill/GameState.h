@@ -9,6 +9,7 @@ namespace NWP {
 	class GameState : public State {
 	public:
 		GameState(GameDataRef data);
+		~GameState();
 		void Init();
 		void HandleInput();
 		void Update(float dt);
@@ -31,11 +32,11 @@ namespace NWP {
 		sf::Sprite _background;
 		sf::Sprite _pauseButton;
 		sf::Sprite _gridSprite;
-		sf::Sprite _gridPieces[7][7];
+		std::vector< std::vector<sf::Sprite> > _gridPieces;
 		sf::Sprite* _tempMill[3];
 		std::string _tempPieceStr;
 
-		int gridArray[7][7];
+		std::vector< std::vector<int> > gridArray;
 		int turn;
 		int gameState;
 		int previousGameState;

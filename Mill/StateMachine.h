@@ -17,8 +17,9 @@ namespace NWP {
 
 		StateRef &GetActiveState();
 	private:
-		std::stack<StateRef> _states;
+		StateRef _state;
 		StateRef _newState;
+		StateRef _previousState;
 
 		bool _isRemoving = false;
 		bool _isAdding = false;

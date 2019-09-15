@@ -27,9 +27,6 @@ namespace NWP {
 		void InitSprites(int playerPiece);
 		void DecreaseBasePieces();
 		void IncreaseTakenPieces();
-		bool CheckIfMill(int x1, int y1, int x2, int y2, int x3, int y3, MillPieces pieces);
-		bool CheckIfOnMill(int row, int column, MillPieces pieces);
-		
 
 		int playerPiece;
 		int basePieces = 9;
