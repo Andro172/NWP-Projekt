@@ -4,12 +4,8 @@
 #include "GameOverState.h"
 
 namespace NWP {
-	GameState::GameState(GameDataRef data) : _data(data) {
+	GameState::GameState(GameDataRef data) : _data(data), greenPlayer(GREEN_PIECE,_data), redPlayer(RED_PIECE,_data) {
 
-	}
-	GameState::~GameState() {
-		delete this->greenPlayer;
-		delete this->redPlayer;
 	}
 
 	void GameState::Init() {
@@ -45,11 +41,13 @@ namespace NWP {
 		InitGridArray();
 		InitGridPieces();
 
-		this->greenPlayer = new Player(GREEN_PIECE, _data);
-		this->redPlayer = new Player(RED_PIECE, _data);
+		/*this->greenPlayer = new Player(GREEN_PIECE, _data);
+		this->redPlayer = new Player(RED_PIECE, _data);*/
+		this->greenPlayer.InitSprites();
+		this->redPlayer.InitSprites();
 
-		this->greenPlayer->ChangeTurnState(true);
-		this->redPlayer->ChangeTurnState(false);
+		this->greenPlayer.ChangeTurnState(true);
+		this->redPlayer.ChangeTurnState(false);
 
 	}
 	void GameState::HandleInput() {
@@ -107,8 +105,8 @@ namespace NWP {
 		this->_data->window.draw(this->_background);
 		this->_data->window.draw(this->_pauseButton);
 		this->_data->window.draw(this->_gridSprite);
-		this->greenPlayer->DrawSprites();
-		this->redPlayer->DrawSprites();
+		this->greenPlayer.DrawSprites();
+		this->redPlayer.DrawSprites();
 
 		for (int i = 0; i < 7; ++i) {
 			for (int j = 0; j < 7; ++j) {
@@ -167,7 +165,7 @@ namespace NWP {
 		if (gridArray[row][column] == EMPTY_PIECE) {
 
 			if (GREEN_PIECE == turn) {
-				bool placed = this->greenPlayer->PlacePiece(&_gridPieces[row][column]);
+				bool placed = this->greenPlayer.PlacePiece(&_gridPieces[row][column]);
 				if (!placed) {
 					previousGameState = gameState;
 					gameState = STATE_MOVING;
@@ -178,11 +176,11 @@ namespace NWP {
 				try {
 					CheckPlayerHasMill(turn);
 
-					this->greenPlayer->ChangeTurnState(false);
-					this->redPlayer->ChangeTurnState(true);
+					this->greenPlayer.ChangeTurnState(false);
+					this->redPlayer.ChangeTurnState(true);
 					turn = RED_PIECE;
 
-					if (this->redPlayer->GetBasePieces() == 0) {
+					if (this->redPlayer.GetBasePieces() == 0) {
 						gameState = STATE_MOVING;
 						previousGameState = gameState;
 						this->CheckAndSelectPiece(row, column);
@@ -192,7 +190,7 @@ namespace NWP {
 				}
 			}
 			else if (RED_PIECE == turn) {
-				bool placed = this->redPlayer->PlacePiece(&_gridPieces[row][column]);
+				bool placed = this->redPlayer.PlacePiece(&_gridPieces[row][column]);
 				if (!placed) {
 					previousGameState = gameState;
 					gameState = STATE_MOVING;
@@ -202,11 +200,11 @@ namespace NWP {
 				try {
 					CheckPlayerHasMill(turn);
 
-					this->greenPlayer->ChangeTurnState(true);
-					this->redPlayer->ChangeTurnState(false);
+					this->greenPlayer.ChangeTurnState(true);
+					this->redPlayer.ChangeTurnState(false);
 					turn = GREEN_PIECE;
 
-					if (this->greenPlayer->GetBasePieces() == 0) {
+					if (this->greenPlayer.GetBasePieces() == 0) {
 						previousGameState = gameState;
 						gameState = STATE_MOVING;
 					}
@@ -224,8 +222,8 @@ namespace NWP {
 		if (gridArray[row][column] != EMPTY_PIECE && gridArray[row][column] != INVALID_SPACE) {
 
 			if (turn == GREEN_PIECE && gridArray[row][column] == RED_PIECE) {
-				if (!this->redPlayer->CheckIfPieceOnMill(row,column)) {
-					bool taken = this->greenPlayer->TakePiece(&_gridPieces[row][column]);
+				if (!this->redPlayer.CheckIfPieceOnMill(row,column)) {
+					bool taken = this->greenPlayer.TakePiece(&_gridPieces[row][column]);
 					if (!taken) {
 						previousGameState = gameState;
 						gameState = STATE_GREEN_WON;
@@ -238,8 +236,8 @@ namespace NWP {
 					(*_tempMill[1]).setTexture(this->_data->assets.GetTexture(_tempPieceStr));
 					(*_tempMill[2]).setTexture(this->_data->assets.GetTexture(_tempPieceStr));
 
-					this->greenPlayer->ChangeTurnState(false);
-					this->redPlayer->ChangeTurnState(true);
+					this->greenPlayer.ChangeTurnState(false);
+					this->redPlayer.ChangeTurnState(true);
 					turn = RED_PIECE;
 					
 					gameState = previousGameState;
@@ -249,8 +247,8 @@ namespace NWP {
 				}
 			}
 			else if (turn == RED_PIECE && gridArray[row][column] == GREEN_PIECE) {
-				if (!this->greenPlayer->CheckIfPieceOnMill(row,column)) {
-					bool taken = this->redPlayer->TakePiece(&_gridPieces[row][column]);
+				if (!this->greenPlayer.CheckIfPieceOnMill(row,column)) {
+					bool taken = this->redPlayer.TakePiece(&_gridPieces[row][column]);
 					if (!taken) {
 						previousGameState = gameState;
 						gameState = STATE_RED_WON;
@@ -263,8 +261,8 @@ namespace NWP {
 					(*_tempMill[1]).setTexture(this->_data->assets.GetTexture(_tempPieceStr));
 					(*_tempMill[2]).setTexture(this->_data->assets.GetTexture(_tempPieceStr));
 
-					this->greenPlayer->ChangeTurnState(true);
-					this->redPlayer->ChangeTurnState(false);
+					this->greenPlayer.ChangeTurnState(true);
+					this->redPlayer.ChangeTurnState(false);
 					turn = GREEN_PIECE;
 					
 					gameState = previousGameState;
@@ -282,12 +280,12 @@ namespace NWP {
 		if (gridArray[row][column] != EMPTY_PIECE && gridArray[row][column] != INVALID_SPACE) {
 
 			if (GREEN_PIECE == turn && GREEN_PIECE == gridArray[row][column]) {
-				this->greenPlayer->SelectPiece(&_gridPieces[row][column]);
+				this->greenPlayer.SelectPiece(&_gridPieces[row][column]);
 				previousGameState = gameState;
 				gameState = STATE_MOVING;
 			}
 			else if (RED_PIECE == turn && RED_PIECE == gridArray[row][column]) {
-				this->redPlayer->SelectPiece(&_gridPieces[row][column]);
+				this->redPlayer.SelectPiece(&_gridPieces[row][column]);
 				previousGameState = gameState;
 				gameState = STATE_MOVING;
 			}
@@ -302,17 +300,17 @@ namespace NWP {
 		if (gridArray[row][column] == EMPTY_PIECE) {
 
 			if (GREEN_PIECE == turn) {
-				if (CheckIfCanMove(row,column) || this->redPlayer->GetTakenPieces() == 6) {
-					this->greenPlayer->MovePiece(&_gridPieces[row][column]);
+				if (CheckIfCanMove(row,column) || this->redPlayer.GetTakenPieces() == 6) {
+					this->greenPlayer.MovePiece(&_gridPieces[row][column]);
 					gridArray[row][column] = turn;
 					gridArray[rowSelected][columnSelected] = EMPTY_PIECE;
 
 					try {
 						CheckPlayerHasMill(turn);
-						this->greenPlayer->UnsetMillIfMoved(rowSelected, columnSelected);
+						this->greenPlayer.UnsetMillIfMoved(rowSelected, columnSelected);
 
-						this->greenPlayer->ChangeTurnState(false);
-						this->redPlayer->ChangeTurnState(true);
+						this->greenPlayer.ChangeTurnState(false);
+						this->redPlayer.ChangeTurnState(true);
 						turn = RED_PIECE;
 					}
 					catch (int error) {
@@ -320,17 +318,17 @@ namespace NWP {
 				}
 			}
 			else if (RED_PIECE == turn) {
-				if (CheckIfCanMove(row, column) || this->greenPlayer->GetTakenPieces() == 6) {
-					this->redPlayer->MovePiece(&_gridPieces[row][column]);
+				if (CheckIfCanMove(row, column) || this->greenPlayer.GetTakenPieces() == 6) {
+					this->redPlayer.MovePiece(&_gridPieces[row][column]);
 					gridArray[row][column] = turn;
 					gridArray[rowSelected][columnSelected] = EMPTY_PIECE;
 
 					try {
 						CheckPlayerHasMill(turn);
-						this->redPlayer->UnsetMillIfMoved(rowSelected, columnSelected);
+						this->redPlayer.UnsetMillIfMoved(rowSelected, columnSelected);
 
-						this->greenPlayer->ChangeTurnState(true);
-						this->redPlayer->ChangeTurnState(false);
+						this->greenPlayer.ChangeTurnState(true);
+						this->redPlayer.ChangeTurnState(false);
 						turn = GREEN_PIECE;
 					}
 					catch (int error) {
@@ -381,12 +379,12 @@ namespace NWP {
 				if (GREEN_PIECE == pieceToCheck) {
 					selectingPieceStr = "Green Selected Piece";
 					_tempPieceStr = "Green Piece";
-					greenPlayer->SetMill(x1, y1, x2, y2, x3, y3);
+					greenPlayer.SetMill(x1, y1, x2, y2, x3, y3);
 				}
 				else {
 					selectingPieceStr = "Red Selected Piece";
 					_tempPieceStr = "Red Piece";
-					redPlayer->SetMill(x1, y1, x2, y2, x3, y3);
+					redPlayer.SetMill(x1, y1, x2, y2, x3, y3);
 				}
 
 				_gridPieces[x1][y1].setTexture(this->_data->assets.GetTexture(selectingPieceStr));
@@ -406,10 +404,10 @@ namespace NWP {
 
 	bool GameState::CheckIfAlreadyMill(int x1, int y1, int x2, int y2, int x3, int y3, int pieceToCheck) {
 		if (pieceToCheck == GREEN_PIECE) {
-			return this->greenPlayer->CheckIfHasMill(x1, y1, x2, y2, x3, y3);
+			return this->greenPlayer.CheckIfHasMill(x1, y1, x2, y2, x3, y3);
 		}
 		else {
-			return this->redPlayer->CheckIfHasMill(x1, y1, x2, y2, x3, y3);
+			return this->redPlayer.CheckIfHasMill(x1, y1, x2, y2, x3, y3);
 		}
 	}
 	bool GameState::CheckIfCanMove(int row, int column)

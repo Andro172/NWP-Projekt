@@ -9,7 +9,7 @@ namespace NWP {
 	class GameState : public State {
 	public:
 		GameState(GameDataRef data);
-		~GameState();
+		~GameState() { };
 		void Init();
 		void HandleInput();
 		void Update(float dt);
@@ -44,8 +44,8 @@ namespace NWP {
 		int columnSelected = -1;
 
 
-		Player *greenPlayer;
-		Player *redPlayer;
+		Player greenPlayer;
+		Player redPlayer;
 
 		sf::Clock _clock;
 	};

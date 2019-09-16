@@ -5,11 +5,11 @@ namespace NWP {
 	Player::Player(int playerPiece, GameDataRef data) {
 		this->_data = data;
 		this->playerPiece = playerPiece;
-		InitSprites(playerPiece);
+		/*InitSprites(playerPiece);*/
 	}
 
-	void Player::InitSprites(int turn) {
-		if (turn == GREEN_PIECE) {
+	void Player::InitSprites() {
+		if (this->playerPiece == GREEN_PIECE) {
 			float xOffset = 0;
 			float yOffset = 0;
 

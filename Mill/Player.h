@@ -10,6 +10,7 @@ namespace NWP {
 	class Player {
 	public:
 		Player(int playerPiece, GameDataRef data);
+		~Player() {};
 		void ChangeTurnState(bool hasTurn);
 		void DrawSprites();
 		bool PlacePiece(sf::Sprite *placeInGrid);
@@ -23,8 +24,9 @@ namespace NWP {
 		void UnsetMillIfMoved(int row,int column);
 		int GetBasePieces();
 		int GetTakenPieces();
+		void InitSprites();
 	private:
-		void InitSprites(int playerPiece);
+		/*void InitSprites(int playerPiece);*/
 		void DecreaseBasePieces();
 		void IncreaseTakenPieces();
 
