@@ -5,7 +5,6 @@ namespace NWP {
 	Player::Player(int playerPiece, GameDataRef data) {
 		this->_data = data;
 		this->playerPiece = playerPiece;
-		/*InitSprites(playerPiece);*/
 	}
 
 	void Player::InitSprites() {

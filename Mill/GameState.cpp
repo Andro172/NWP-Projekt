@@ -41,8 +41,6 @@ namespace NWP {
 		InitGridArray();
 		InitGridPieces();
 
-		/*this->greenPlayer = new Player(GREEN_PIECE, _data);
-		this->redPlayer = new Player(RED_PIECE, _data);*/
 		this->greenPlayer.InitSprites();
 		this->redPlayer.InitSprites();
 

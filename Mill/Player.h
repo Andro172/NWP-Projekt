@@ -26,7 +26,6 @@ namespace NWP {
 		int GetTakenPieces();
 		void InitSprites();
 	private:
-		/*void InitSprites(int playerPiece);*/
 		void DecreaseBasePieces();
 		void IncreaseTakenPieces();
 
